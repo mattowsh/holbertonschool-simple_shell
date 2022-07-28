@@ -1,12 +1,13 @@
-#include "lists.h"
+#include "main.h"
 
 
 
-char ***set_strtok(char **input, char *sep)
+char ***set_strtok(char *input, char *sep)
 {
-	char **in = input;
-	char **in1 = strdup(in);
-	char **temp = strdup(in);;
+	char *in = input;
+	char *in1 = strdup(in);
+	char *temp = strdup(in);
+	char ***result;
 	int i, len, j = 0;
 
 	in1 = strtok(in1, sep);
@@ -20,7 +21,7 @@ char ***set_strtok(char **input, char *sep)
 
 	in1 = strdup(in);
 
-	(*result) = malloc(sizeof(char * j));
+	(*result) = malloc(sizeof(char *) * j);
 	if (!(*result))
 		return (0);
 
