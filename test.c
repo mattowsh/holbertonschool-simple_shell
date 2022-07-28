@@ -46,3 +46,21 @@ char **set_strtok(char *input, char *sep)
 	free(in1);
 	return (result);
 }
+
+int main(void)
+{
+	char *p = "hi slkdfjslkdjfksjdf \n ksjdfksjdfkjsdf\n";
+	char **res;
+	int i;
+
+	res = set_strtok(p, " \n");
+	for (i = 0; res[i]; i++)
+	{
+		printf("%s\n", res[i]);
+	}
+	for (; i >= 0; i--)
+		free(res[i]);
+	free(res);
+
+	return (0);
+}
