@@ -1,14 +1,31 @@
 #include "main.h"
 
-char **str_to_argv(char *input, )
+
+int non_interactive(char *p1, char **av)
 {
-	char **result;
+	char *full_path;
+	int file;
 
-	malloc
+	p1 = strtok(p1, ":");
+	while (p1)
+	{
+		if (!(full_path = malloc(1024)))
+			return (-1);
+		strcat(full_path, p1);
+		strcat(full_path, "/");
+		strcat(full_path, av[1]);
+		if ((file = open(full_path, O_RDONLY)) == 3)
+		{
+			close(file);
+			char *argv[] = { full_path, str_to_argv(av, " "), NULL };
+			execve(full_path, argv, NULL);
+		}
+		p1 = strtok(NULL, ":");
+		free(full_path);
+	}
+	return (-1);
 }
-
-
-int non_interactive(char *p1, char *argv1, char *argv2, char *argv3)
+int non_interactive1(char *p1, char *argv1, char *argv2, char *argv3)
 {
 	char *full_path;
 	int file;
@@ -33,7 +50,7 @@ int non_interactive(char *p1, char *argv1, char *argv2, char *argv3)
 	return (-1);
 }
 
-int interactive(char *b, char *p1)
+int interactive(char **b, char *p1)
 {
 	char *full_path;
 	int file;
@@ -49,7 +66,7 @@ int interactive(char *b, char *p1)
 		if ((file = open(full_path, O_RDONLY)) == 3)
 		{
 			close(file);
-			execve(full_path, b, NULL);
+			/*execve(full_path, b, NULL);*/
 		}
 		p1 = strtok(NULL, ":");
 		free(full_path);
@@ -64,11 +81,10 @@ int main(int ac, char **av, char **env)
 	int characters;
 	char *p = getenv("PATH");
 	char *p1 = strdup(p);
-	int fr;
 	int status, pid;
 
 	if (ac > 1)
-		return (non_interactive(p1, av[1], av[2], av[3]));
+		return (non_interactive(p1, av));
 
 	while(1)
 	{
