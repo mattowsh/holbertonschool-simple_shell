@@ -17,9 +17,9 @@ int non_interactive(char *p1, char **av)
 		if ((file = open(full_path, O_RDONLY)) == 3)
 		{
 			close(file);
-			char *argv[] = { full_path, str_to_argv(av, " "), NULL };
+			/*char *argv[] = { full_path, str_to_argv(av, " "), NULL };
 			execve(full_path, argv, NULL);
-		}
+		*/}
 		p1 = strtok(NULL, ":");
 		free(full_path);
 	}
@@ -92,7 +92,16 @@ int main(int ac, char **av, char **env)
 			return (-1);
 		printf("#cisfun$ ");
 		characters = getline(&b, &bufsize, stdin);
-		
+		if (!b)
+		{
+			free(b);
+			continue;
+		}
+		if (strcmp(b, "exit\n") == 0)
+		{
+			free(b);
+			return (0);
+		}
 		switch (pid = fork())
 		{
 			case -1:
