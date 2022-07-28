@@ -50,28 +50,31 @@ int non_interactive1(char *p1, char *argv1, char *argv2, char *argv3)
 	return (-1);
 }
 
-int interactive(char **b, char *p1)
+int interactive(char *b, char *p1)
 {
 	char *full_path;
 	int file;
-	int i = 0;
-
+	char **argv;
 	p1 = strtok(p1, "-");
 	while (p1)
 	{
 		if (!(full_path = malloc(1024)))
 			return (-1);
+		argv = set_strtok(b, " \n");
 		strcat(full_path, p1);
 		strcat(full_path, "/");
+		strcat(full_path, argv[0]);
+		argv[0] = strdup(full_path);
 		if ((file = open(full_path, O_RDONLY)) == 3)
 		{
+			printf("found");
 			close(file);
-			/*execve(full_path, b, NULL);*/
+			execve(full_path, argv, NULL);
 		}
 		p1 = strtok(NULL, ":");
 		free(full_path);
 	}
-	return (-1);
+	return (0);
 }
 
 int main(int ac, char **av, char **env)
@@ -102,17 +105,23 @@ int main(int ac, char **av, char **env)
 			free(b);
 			return (0);
 		}
-		switch (pid = fork())
+		pid = fork();
+		if (pid == -1)
 		{
-			case -1:
-				exit(-1);
-				break;
-			case 0: /*Proceso hijo*/
-
-				break;
-			default: /*Proceso padre*/
-				wait(&status);
-				break;
+			perror("Error");
+			free(b);
+			exit(1);
+		}
+		else if (pid == 0)
+		{
+			if (interactive(b, p1) == 0)
+				perror("Error");
+			free(b);
+			exit(1);
+		}
+		else
+		{
+			wait(&status);
 		}
 		free(b);
 	}
