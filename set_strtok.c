@@ -24,14 +24,11 @@ char **set_strtok(char *input, char *sep)
 	if (!(result))
 		return (0);
 
-	printf("first success\n");
 	in1 = strtok(in1, sep);
 	for (i = 0; i < j; i++)
 	{
-		printf("second success\n");
 		len = strlen(in1);
 		result[i] = malloc(len++);
-		printf("third success");
 		if (!(result[i]))
 		{
 			printf("error");
@@ -39,7 +36,6 @@ char **set_strtok(char *input, char *sep)
 				free(result[i]);
 			free(result);
 		}
-		printf("fourth success\n");
 		result[i] = strdup(in1);
 		in1 = strtok(NULL, sep);
 	}
