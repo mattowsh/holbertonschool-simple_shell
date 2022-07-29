@@ -55,7 +55,8 @@ int interactive(char *b, char *p1)
 	char *full_path;
 	int file;
 	char **argv;
-	p1 = strtok(p1, "-");
+
+	p1 = strtok(p1, ":");
 	while (p1)
 	{
 		if (!(full_path = malloc(1024)))
@@ -64,17 +65,17 @@ int interactive(char *b, char *p1)
 		strcat(full_path, p1);
 		strcat(full_path, "/");
 		strcat(full_path, argv[0]);
-		argv[0] = strdup(full_path);
+		printf("%s\n", full_path);
 		if ((file = open(full_path, O_RDONLY)) == 3)
 		{
-			printf("found");
 			close(file);
 			execve(full_path, argv, NULL);
 		}
 		p1 = strtok(NULL, ":");
 		free(full_path);
+		free(argv);
 	}
-	return (0);
+	return (-1);
 }
 
 int main(int ac, char **av, char **env)
@@ -83,7 +84,7 @@ int main(int ac, char **av, char **env)
 	char *b;
 	int characters;
 	char *p = getenv("PATH");
-	char *p1 = strdup(p);
+	char *p1;
 	int status, pid;
 
 	if (ac > 1)
@@ -106,6 +107,7 @@ int main(int ac, char **av, char **env)
 			return (0);
 		}
 		pid = fork();
+		p1 = strdup(p);
 		if (pid == -1)
 		{
 			perror("Error");
@@ -114,15 +116,13 @@ int main(int ac, char **av, char **env)
 		}
 		else if (pid == 0)
 		{
-			if (interactive(b, p1) == 0)
+			if (interactive(b, p1) == -1)
 				perror("Error");
 			free(b);
 			exit(1);
 		}
 		else
-		{
 			wait(&status);
-		}
 		free(b);
 	}
 	return (0);
