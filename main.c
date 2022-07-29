@@ -50,25 +50,37 @@ int non_interactive1(char *p1, char *argv1, char *argv2, char *argv3)
 	return (-1);
 }
 
+int exists(char *filename)
+{
+	struct stat buffer;
+
+	return (stat(filename, &buffer));
+}
 int interactive(char *b, char *p1)
 {
 	char *full_path;
 	int file;
 	char **argv;
+	struct stat buf;
 
+	printf("%s\n", p1);
 	p1 = strtok(p1, ":");
 	while (p1)
 	{
-		if (!(full_path = malloc(1024)))
+		printf("%s\n", p1);
+		full_path = malloc(1024);
+		if (!full_path)
 			return (-1);
 		argv = set_strtok(b, " \n");
 		strcat(full_path, p1);
 		strcat(full_path, "/");
 		strcat(full_path, argv[0]);
 		printf("%s\n", full_path);
-		if ((file = open(full_path, O_RDONLY)) == 3)
+		for (int i = 0; argv[i]; i++)
+			printf("%s\n", argv[i]);
+		if (exists(full_path) == 0)
 		{
-			close(file);
+			printf("found\n");
 			execve(full_path, argv, NULL);
 		}
 		p1 = strtok(NULL, ":");
@@ -110,14 +122,14 @@ int main(int ac, char **av, char **env)
 		p1 = strdup(p);
 		if (pid == -1)
 		{
-			perror("Error");
 			free(b);
 			exit(1);
 		}
 		else if (pid == 0)
 		{
+			printf("%s\n", p1);
 			if (interactive(b, p1) == -1)
-				perror("Error");
+				perror("failed");
 			free(b);
 			exit(1);
 		}
