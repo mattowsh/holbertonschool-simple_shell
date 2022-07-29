@@ -1,47 +1,43 @@
 #include "main.h"
 
 
+int exists(char *filename)
+{
+	struct stat buffer;
+	return (stat(filename, &buffer));
+}
 int non_interactive(char *p1, char **av)
 {
 	char *full_path;
 	int file;
+	char *temp;
+	int i;
+	char **argv;
 
 	p1 = strtok(p1, ":");
 	while (p1)
 	{
+		printf("iteration\n");
 		if (!(full_path = malloc(1024)))
 			return (-1);
 		strcat(full_path, p1);
 		strcat(full_path, "/");
 		strcat(full_path, av[1]);
+		printf("strcat done\n");
 		if ((file = open(full_path, O_RDONLY)) == 3)
 		{
+			printf("found\n");
 			close(file);
-			/*char *argv[] = { full_path, str_to_argv(av, " "), NULL };
-			execve(full_path, argv, NULL);
-		*/}
-		p1 = strtok(NULL, ":");
-		free(full_path);
-	}
-	return (-1);
-}
-int non_interactive1(char *p1, char *argv1, char *argv2, char *argv3)
-{
-	char *full_path;
-	int file;
-
-	p1 = strtok(p1, ":");
-	while (p1)
-	{
-		if (!(full_path = malloc(1024)))
-			return (-1);
-		strcat(full_path, p1);
-		strcat(full_path, "/");
-		strcat(full_path, argv1);
-		if ((file = open(full_path, O_RDONLY)) == 3)
-		{
-			close(file);
-			char *argv[] = { full_path, argv2, argv3, NULL };
+			temp = malloc(1024);
+			if (!temp)
+				return (-1);
+			for (i = 0; av[i]; i++)
+			{
+				strcat(temp, av[i]);
+				strcat(temp, " ");
+			}
+			argv = set_strtok(temp, " ");
+			printf("previous to execute\n");
 			execve(full_path, argv, NULL);
 		}
 		p1 = strtok(NULL, ":");
@@ -50,12 +46,6 @@ int non_interactive1(char *p1, char *argv1, char *argv2, char *argv3)
 	return (-1);
 }
 
-int exists(char *filename)
-{
-	struct stat buffer;
-
-	return (stat(filename, &buffer));
-}
 int interactive(char *b, char *p1)
 {
 	char *full_path;
@@ -130,7 +120,6 @@ int main(int ac, char **av, char **env)
 			printf("%s\n", p1);
 			if (interactive(b, p1) == -1)
 				perror("failed");
-			free(b);
 			exit(1);
 		}
 		else
