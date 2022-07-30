@@ -17,27 +17,24 @@ int non_interactive(char *p1, char **av)
 	p1 = strtok(p1, ":");
 	while (p1)
 	{
-		printf("iteration\n");
 		if (!(full_path = malloc(1024)))
 			return (-1);
 		strcat(full_path, p1);
 		strcat(full_path, "/");
 		strcat(full_path, av[1]);
-		printf("strcat done\n");
 		if ((file = open(full_path, O_RDONLY)) == 3)
 		{
-			printf("found\n");
 			close(file);
 			temp = malloc(1024);
 			if (!temp)
 				return (-1);
-			for (i = 0; av[i]; i++)
+			strcat(temp, full_path);
+			for (i = 1; av[i]; i++)
 			{
 				strcat(temp, av[i]);
 				strcat(temp, " ");
 			}
 			argv = set_strtok(temp, " ");
-			printf("previous to execute\n");
 			execve(full_path, argv, NULL);
 		}
 		p1 = strtok(NULL, ":");
@@ -86,7 +83,7 @@ int main(int ac, char **av, char **env)
 	char *b;
 	int characters;
 	char *p = getenv("PATH");
-	char *p1;
+	char *p1 = strdup(p);
 	int status, pid;
 
 	if (ac > 1)
@@ -108,8 +105,8 @@ int main(int ac, char **av, char **env)
 			free(b);
 			return (0);
 		}
-		pid = fork();
 		p1 = strdup(p);
+		pid = fork();
 		if (pid == -1)
 		{
 			free(b);
