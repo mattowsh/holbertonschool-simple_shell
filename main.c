@@ -6,6 +6,7 @@ int exists(char *filename)
 	struct stat buffer;
 	return (stat(filename, &buffer));
 }
+
 int non_interactive(char *p1, char **av)
 {
 	char *full_path;
@@ -19,8 +20,11 @@ int non_interactive(char *p1, char **av)
 	{
 		if (!(full_path = malloc(1024)))
 			return (-1);
-		strcat(full_path, p1);
-		strcat(full_path, "/");
+		if (exists(av[1]) != 0)
+		{
+			strcat(full_path, p1);
+			strcat(full_path, "/");
+		}
 		strcat(full_path, av[1]);
 		if ((file = open(full_path, O_RDONLY)) == 3)
 		{
@@ -34,7 +38,7 @@ int non_interactive(char *p1, char **av)
 				strcat(temp, av[i]);
 				strcat(temp, " ");
 			}
-			argv = set_strtok(temp, " ");
+			argv = set_strtok(temp);
 			execve(full_path, argv, NULL);
 		}
 		p1 = strtok(NULL, ":");
@@ -42,37 +46,35 @@ int non_interactive(char *p1, char **av)
 	}
 	return (-1);
 }
-
 int interactive(char *b, char *p1)
 {
+	char *tokens;
 	char *full_path;
-	int file;
-	char **argv;
-	struct stat buf;
+	char **argv = NULL;
 
-	printf("%s\n", p1);
-	p1 = strtok(p1, ":");
-	while (p1)
+	tokens = strtok(p1, ":");
+	while (tokens != NULL)
 	{
-		printf("%s\n", p1);
 		full_path = malloc(1024);
 		if (!full_path)
 			return (-1);
-		argv = set_strtok(b, " \n");
-		strcat(full_path, p1);
+
+		if (argv)
+			free(argv);
+		argv = set_strtok(b);
+
+		if (exists(argv[0]) == 0) /*if b = ruta absoluta (ej. /bin/ls)*/
+			execve(argv[0], argv, NULL);
+		
+		/* si antes checkeo que b != ruta absoluta valida...*/
+		strcat(full_path, tokens);
 		strcat(full_path, "/");
 		strcat(full_path, argv[0]);
-		printf("%s\n", full_path);
-		for (int i = 0; argv[i]; i++)
-			printf("%s\n", argv[i]);
+		strcat(full_path, "\0");
 		if (exists(full_path) == 0)
-		{
-			printf("found\n");
 			execve(full_path, argv, NULL);
-		}
-		p1 = strtok(NULL, ":");
+		tokens = strtok(NULL, ":");
 		free(full_path);
-		free(argv);
 	}
 	return (-1);
 }
@@ -80,7 +82,7 @@ int interactive(char *b, char *p1)
 int main(int ac, char **av, char **env)
 {
 	size_t bufsize = 1024;
-	char *b;
+	char *b, *error_message;
 	int characters;
 	char *p = getenv("PATH");
 	char *p1 = strdup(p);
@@ -95,18 +97,19 @@ int main(int ac, char **av, char **env)
 			return (-1);
 		printf("#cisfun$ ");
 		characters = getline(&b, &bufsize, stdin);
-		if (!b)
+		b[characters - 1] = '\0';
+		if (b[0] == '\0')
 		{
 			free(b);
 			continue;
 		}
-		if (strcmp(b, "exit\n") == 0)
+		if (strcmp(b, "exit") == 0)
 		{
 			free(b);
-			return (0);
+			break;
 		}
-		p1 = strdup(p);
 		pid = fork();
+		p1 = strdup(p);
 		if (pid == -1)
 		{
 			free(b);
@@ -114,9 +117,10 @@ int main(int ac, char **av, char **env)
 		}
 		else if (pid == 0)
 		{
-			printf("%s\n", p1);
 			if (interactive(b, p1) == -1)
-				perror("failed");
+			{
+				dprintf(STDERR_FILENO, "%s: %s: No such file or directory\n", av[0], b);
+			}
 			exit(1);
 		}
 		else
