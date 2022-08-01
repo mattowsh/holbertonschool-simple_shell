@@ -19,30 +19,26 @@ int main(int ac, char **av, char **env)
 	(void) env;
 	if (ac > 1)
 		return (non_interactive(p1, av));
-
-	while(1)
+	while (1)
 	{
-		if (!(b = malloc(bufsize)))
+		b = malloc(bufsize);
+		if (!b)
 			return (-1);
 		printf("#cisfun$ ");
 		characters = getline(&b, &bufsize, stdin);
-		b[characters - 1] = '\0';
-		if (b[0] == '\0')
+		if (strcmp(b, "exit\n") == 0)
 		{
+			free(p1);
 			free(b);
-			continue;
-		}
-		if (strcmp(b, "exit") == 0)
-		{
-			free(b);
-			break;
+			exit(0);;
 		}
 		pid = fork();
 		p1 = strdup(p);
 		if (pid == -1)
 		{
+			free(p1);
 			free(b);
-			exit(1);
+			exit(-1);
 		}
 		else if (pid == 0)
 		{

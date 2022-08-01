@@ -32,7 +32,8 @@ int non_interactive(char *p1, char **av)
 	p1 = strtok(p1, ":");
 	while (p1)
 	{
-		if (!(full_path = malloc(1024)))
+		full_path = malloc(1024);
+		if (!full_path)
 			return (-1);
 
 		if (exists(av[1]) != 0)
@@ -42,7 +43,8 @@ int non_interactive(char *p1, char **av)
 		}
 		strcat(full_path, av[1]);
 
-		if ((file = open(full_path, O_RDONLY)) == 3)
+		file = open(full_path, O_RDONLY);
+		if (file == 3)
 		{
 			close(file);
 			temp = malloc(1024);
@@ -89,7 +91,7 @@ int interactive(char *b, char *p1)
 
 		if (exists(argv[0]) == 0) /*if b = absolut path*/
 			execve(argv[0], argv, NULL);
-		
+
 		strcat(full_path, tokens);
 		strcat(full_path, "/");
 		strcat(full_path, argv[0]);
