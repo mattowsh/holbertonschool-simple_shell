@@ -7,5 +7,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <sys/wait.h>
+
 char **set_strtok(char *input);
+
 #endif
