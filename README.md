@@ -26,6 +26,8 @@ Flowdchart
 
 ```mermaid
 graph TD;
-  Start0(Start)-->While0{Continue if it's<br>interactive mode}
-  
+  Start0(Start)
+  Start0-->While0{Continue if it's<br>interactive mode}
+  While0-->If0{Is it interactive<br>mode?}
+  If0-->Getline[Read input]
   ```
