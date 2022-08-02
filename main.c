@@ -13,12 +13,11 @@
 int main(int ac, char **av, char **env)
 {
 	size_t bufsize = 1024;
-	char *b, *p = _getenv(env), *p1;
+	char *b, *p = _getenv(env), *p1, *error_message;
 	int status, pid, characters;
 	int isat = isatty(STDIN_FILENO);
 
 	(void)ac;
-	(void)av;
 	do {
 		p1 = strdup(p);
 		if (isat == 1)
@@ -40,17 +39,14 @@ int main(int ac, char **av, char **env)
 		else if (pid == 0)
 		{
 			if (interactive(b, p1) == -1)
-			{
-				error_message = error(av, b);
-				perror(error_message);
-			} 			
+				perror(error_message = error(av, b));
 			massive_free(2, p1, b);
 			exit(1);
 		}
 		else
 			wait(&status);
 		massive_free(2, p1, b);
-	}while (isat == 1);
+	} while (isat == 1);
 	massive_free(2, p1, b);
 	return (0);
 }

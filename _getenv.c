@@ -23,11 +23,3 @@ char *_getenv(char **e)
 	p = strtok(NULL, "=");
 	return (p);
 }
-/*
-int main (int ac, char *av, char **env)
-{
-	char *res = _getenv(env);
-	printf("%s\n", res);
-
-	return (0);
-}*/
