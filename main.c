@@ -15,23 +15,19 @@ int main(int ac, char **av, char **env)
 	size_t bufsize = 1024;
 	char *b, *p = getenv("PATH"), *p1 = strdup(p);
 	int status, characters, pid;
+	int isat = isatty(STDIN_FILENO);
 
 	(void) env;
-	if (ac > 1)
-		return (non_interactive(p1, av));
 	while (1)
 	{
+		if (isat == 1)
+			printf("#cisfun$ ");
 		b = malloc(bufsize);
 		if (!b)
 			return (-1);
-		printf("#cisfun$ ");
 		characters = getline(&b, &bufsize, stdin);
 		if (strcmp(b, "exit\n") == 0)
-		{
-			free(p1);
-			free(b);
-			exit(0);;
-		}
+			break;
 		pid = fork();
 		p1 = strdup(p);
 		if (pid == -1)
@@ -50,7 +46,10 @@ int main(int ac, char **av, char **env)
 		}
 		else
 			wait(&status);
-		free(b);
+		if (isat != 1)
+			break;
 	}
+	free(p1);
+	free(b);
 	return (0);
 }
