@@ -1,9 +1,9 @@
 Readme was created
 
 **PENDING**
+
 BETTY
-- main.c: interactive y main
-- set_strtok: LINES more 80 chars
+- LINES more 80 chars
 
 MEMORY LEAKS
 - all files
@@ -16,3 +16,4 @@ TXT
 
 OTHER
 - use the correct functions
+- **create our getenv function**
