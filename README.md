@@ -35,4 +35,6 @@ graph TD;
   Fork0-->Fork1{Check if it's<br>parent or<br>child}
   Fork1-->|Child|Execve[Execute<br>requested<br>command]
   Fork1-->|Parent|Wait[Wait for<br>child to<br>finish]
+  Execve-->|Finish process|Wait
+  Wait-->While0
   ```
