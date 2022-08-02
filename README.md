@@ -2,8 +2,10 @@ Readme was created
 
 **PENDING**
 
-BETTY
-- LINES more 80 chars
+CODE
+- error message
+- error value in exit (errno)
+- check if every token, of path, has at final byte a "/"
 
 MEMORY LEAKS
 - all files
@@ -15,6 +17,4 @@ TXT
 - Flowchart
 
 OTHER
-- use the correct functions
-- **create our getenv function**
 - **test directory**
