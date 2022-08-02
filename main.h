@@ -20,5 +20,6 @@ int exists(char *filename);
 int non_interactive(char *p1, char **av);
 int interactive(char *b, char *p1);
 int separators(char letter);
+char *_getenv(char **env);
 
 #endif

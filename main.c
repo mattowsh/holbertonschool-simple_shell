@@ -13,12 +13,12 @@
 int main(int ac, char **av, char **env)
 {
 	size_t bufsize = 1024;
-	char *b, *p = getenv("PATH"), *p1 = strdup(p);
+	char *b, *p = _getenv(env), *p1 = strdup(p);
 	int status, pid;
 	int isat = isatty(STDIN_FILENO);
 
-	(void) env;
 	(void) ac;
+	(void) av;
 	while (1)
 	{
 		if (isat == 1)
@@ -30,7 +30,6 @@ int main(int ac, char **av, char **env)
 		if (strcmp(b, "exit\n") == 0)
 			break;
 		pid = fork();
-		p1 = strdup(p);
 		if (pid == -1)
 		{
 			free(p1);
