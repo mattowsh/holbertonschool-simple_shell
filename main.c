@@ -19,8 +19,7 @@ int main(int ac, char **av, char **env)
 
 	(void)ac;
 	(void)av;
-	do
-	{
+	do {
 		p1 = strdup(p);
 		if (isat == 1)
 			printf("#cisfun$ ");
@@ -42,8 +41,9 @@ int main(int ac, char **av, char **env)
 		{
 			if (interactive(b, p1) == -1)
 			{
-				/* perror pending to be created */
-			}
+				error_message = error(av, b);
+				perror(error_message);
+			} 			
 			massive_free(2, p1, b);
 			exit(1);
 		}

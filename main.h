@@ -27,4 +27,6 @@ int interactive(char *b, char *p1);
 int separators(char letter);
 char *_getenv(char **env);
 void massive_free(int n, ...);
+char *error(char **av, char *b);
+
 #endif
