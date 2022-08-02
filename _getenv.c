@@ -7,31 +7,29 @@
  * Return:
  */
 
-char *_getenv(char **env)
+char *_getenv(char **e)
 {
-	char *p;
+	char **env = e;
+	char *p, *result;
+	int i;
 
-	while (env)
+
+	for (i = 0; env[i]; i++)
 	{
-		p = strdup(*env);
-		printf("ENV: %s\n", p);
+		p = strdup(env[i]);
 		p = strtok(p, "=");
-		if (strcmp(p, "PATH"))
-		{
-			printf("PATH ENCONTRADO: %s\n", p);
+		if (strcmp(p, "PATH") == 0)
 			break;
-		}
 	}
-
 	p = strtok(NULL, "=");
-	printf("PATH NULL: %s\n", p);
-	return (p);
+	result = strdup(p);
+	return (result);
 }
-
-int main (char **env)
+/*
+int main (int ac, char *av, char **env)
 {
-	_getenv(env);
-	printf("SUCCESS\n");
+	char *res = _getenv(env);
+	printf("%s\n", res);
 
 	return (0);
-}
+}*/
