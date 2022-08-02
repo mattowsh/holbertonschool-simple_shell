@@ -93,6 +93,7 @@ int interactive(char *b, char *p1)
 		if (exists(argv[0]) == 0) /*if b = absolut path*/
 			execve(argv[0], argv, NULL);
 
+		full_path[0] = 0;
 		strcat(full_path, tokens);
 		strcat(full_path, "/");
 		strcat(full_path, argv[0]);
