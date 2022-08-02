@@ -2,7 +2,8 @@
 
 /**
  * separators - Checks if a char is a separator like:
- * space, newline, tab or NULL character at the end of the string
+ * space, newline, tab or NULL character at the end of the stringi
+ * @letter : char to be compared
  *
  * Return: 1 on success, 0 on error
  */

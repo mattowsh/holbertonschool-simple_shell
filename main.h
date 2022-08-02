@@ -8,7 +8,11 @@
 #include <fcntl.h>
 #include <sys/wait.h>
 
-/* structure */
+/**
+ * struct separators - Contains char separators to the separators function
+ * @sep : char separators: space, newline, tab and final NULL of a string
+ */
+
 typedef struct separators
 {
 	char *sep;

@@ -14,7 +14,7 @@ int main(int ac, char **av, char **env)
 {
 	size_t bufsize = 1024;
 	char *b, *p = _getenv(env), *p1 = strdup(p);
-	int status, pid;
+	int status, pid, characters;
 	int isat = isatty(STDIN_FILENO);
 
 	(void) ac;
@@ -26,7 +26,9 @@ int main(int ac, char **av, char **env)
 		b = malloc(bufsize);
 		if (!b)
 			return (-1);
-		getline(&b, &bufsize, stdin);
+		characters = getline(&b, &bufsize, stdin); /* when ctrl+D*/
+		if (characters == -1)
+			exit(-1);
 		if (strcmp(b, "exit\n") == 0)
 			break;
 		pid = fork();
