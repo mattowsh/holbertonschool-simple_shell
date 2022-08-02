@@ -10,7 +10,7 @@
 
 char *_getenv(char **e)
 {
-	char **env = e, *p, *result;
+	char **env = e, *p;
 	int i;
 
 	for (i = 0; env[i]; i++)
@@ -21,8 +21,7 @@ char *_getenv(char **e)
 			break;
 	}
 	p = strtok(NULL, "=");
-	result = strdup(p);
-	return (result);
+	return (p);
 }
 /*
 int main (int ac, char *av, char **env)

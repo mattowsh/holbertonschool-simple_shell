@@ -57,6 +57,7 @@ int non_interactive(char *p1, char **av)
 				strcat(temp, " ");
 			}
 			argv = set_strtok(temp);
+			free(temp);
 			execve(full_path, argv, NULL);
 		}
 		p1 = strtok(NULL, ":");

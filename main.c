@@ -13,14 +13,15 @@
 int main(int ac, char **av, char **env)
 {
 	size_t bufsize = 1024;
-	char *b, *p = _getenv(env), *p1 = strdup(p);
+	char *b, *p = _getenv(env), *p1;
 	int status, pid, characters;
 	int isat = isatty(STDIN_FILENO);
 
-	(void) ac;
-	(void) av;
+	(void)ac;
+	(void)av;
 	do
 	{
+		p1 = strdup(p);
 		if (isat == 1)
 			printf("#cisfun$ ");
 		b = malloc(bufsize);
@@ -34,8 +35,7 @@ int main(int ac, char **av, char **env)
 		pid = fork();
 		if (pid == -1)
 		{
-			free(p1);
-			free(b);
+			massive_free(2, p1, b);
 			exit(-1);
 		}
 		else if (pid == 0)
@@ -44,12 +44,13 @@ int main(int ac, char **av, char **env)
 			{
 				/* perror pending to be created */
 			}
+			massive_free(2, p1, b);
 			exit(1);
 		}
 		else
 			wait(&status);
+		massive_free(2, p1, b);
 	}while (isat == 1);
-	free(p1);
-	free(b);
+	massive_free(2, p1, b);
 	return (0);
 }
