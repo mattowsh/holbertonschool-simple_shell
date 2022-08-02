@@ -18,3 +18,14 @@ TXT
 
 OTHER
 - **test directory**
+
+
+
+Flowdchart
+==========
+
+```mermaid
+graph TD;
+  Start0(Start)-->While0{Continue if it's<br>interactive mode}
+  
+  ```
