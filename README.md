@@ -17,3 +17,4 @@ TXT
 OTHER
 - use the correct functions
 - **create our getenv function**
+- **test directory**
