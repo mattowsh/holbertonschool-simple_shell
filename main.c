@@ -41,7 +41,7 @@ int main(int ac, char **av, char **env)
 		{
 			if (interactive(b, p1) == -1)
 			{
-				dprintf(STDERR_FILENO, "%s: %s: No such file or directory\n", av[0], b);
+				/* perror pending to be created */
 			}
 			exit(1);
 		}
