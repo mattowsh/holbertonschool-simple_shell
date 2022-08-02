@@ -19,7 +19,7 @@ int main(int ac, char **av, char **env)
 
 	(void) ac;
 	(void) av;
-	while (1)
+	do
 	{
 		if (isat == 1)
 			printf("#cisfun$ ");
@@ -46,9 +46,7 @@ int main(int ac, char **av, char **env)
 		}
 		else
 			wait(&status);
-		if (isat != 1)
-			break;
-	}
+	}while (isat == 1);
 	free(p1);
 	free(b);
 	return (0);
