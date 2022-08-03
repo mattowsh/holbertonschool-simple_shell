@@ -47,3 +47,13 @@ char **set_strtok(char *input)
 	result[counter] = NULL;
 	return (result);
 }
+
+/*int main(void)
+{
+	char *str = "holaaaaaaa a a a a a";
+	char **ar;
+
+	ar = set_strtok(str);
+	free_grid(ar);
+	return (0);
+}*/

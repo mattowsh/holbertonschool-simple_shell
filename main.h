@@ -29,5 +29,6 @@ int separators(char letter);
 char *_getenv(char **env);
 void massive_free(int n, ...);
 char *error(char *b);
+void free_grid(char **grid);
 
 #endif

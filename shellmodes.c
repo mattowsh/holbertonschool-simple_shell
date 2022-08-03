@@ -61,6 +61,7 @@ int non_interactive(char *p1, char **av, char **env)
 			execve(full_path, argv, env);
 		}
 		p1 = strtok(NULL, ":");
+		free_grid(argv);
 		free(full_path);
 	}
 	return (-1);
