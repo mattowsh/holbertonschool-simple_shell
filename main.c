@@ -76,7 +76,11 @@ int main(int ac, char **av, char **env)
 			exit(errno);
 		}
 		else
+		{
 			wait(&status);
+			free_grid(baux);
+			free(b);
+		}
 		/*massive_free(3, b, p, p1);*/
 	} while (isat == 1);
 	/*massive_free(2, p1, b);*/
