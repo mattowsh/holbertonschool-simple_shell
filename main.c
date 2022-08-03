@@ -27,9 +27,17 @@ int main(int ac, char **av, char **env)
 			return (-1);
 		characters = getline(&b, &bufsize, stdin);
 		if (characters == -1) /* EOF case */
+		{
+			massive_free(1, b);
 			exit(errno);
+		}
 		bcopy = strdup(b);
 		baux = strtok(bcopy, " \t\n");
+		if (!baux[0])
+		{
+			massive_free(2, baux[0], b);
+			return (0);
+		}
 		if ((strcmp(b, "exit\n") == 0) || (strcmp(baux, "exit") == 0))
 			break;
 		pid = fork();
