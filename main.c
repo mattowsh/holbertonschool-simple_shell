@@ -13,13 +13,12 @@
 int main(int ac, char **av, char **env)
 {
 	size_t bufsize = 1024;
-	char *b, *p = _getenv(env), *p1, *baux, *bcopy;
+	char *b, *p, *p1, *baux, *bcopy;
 	int status, pid, characters;
 	int isat = isatty(STDIN_FILENO);
 
 	(void) ac, (void) av;
 	do {
-		p1 = strdup(p);
 		if (isat == 1)
 			printf("#cisfun$ ");
 		b = malloc(bufsize);
@@ -31,6 +30,8 @@ int main(int ac, char **av, char **env)
 			massive_free(1, b);
 			exit(errno);
 		}
+		p = _getenv(env);
+		p1 = strdup(p);
 		bcopy = strdup(b);
 		baux = strtok(bcopy, " \t\n");
 		if (!baux[0])
