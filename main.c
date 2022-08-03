@@ -13,7 +13,7 @@
 int main(int ac, char **av, char **env)
 {
 	size_t bufsize = 1024;
-	char *b, *p = _getenv(env), *p1; /**baux, *bcopy;*/
+	char *b, *p = _getenv(env), *p1, *baux, *bcopy;
 	int status, pid, characters;
 	int isat = isatty(STDIN_FILENO);
 
@@ -28,9 +28,9 @@ int main(int ac, char **av, char **env)
 		characters = getline(&b, &bufsize, stdin);
 		if (characters == -1) /* EOF case */
 			exit(errno);
-		/*bcopy = strdup(b);
-		baux = strtok(bcopy, " \t\n");*/
-		if (strcmp(b, "exit\n") == 0) /*|| (strcmp(baux, "exit") == 0))*/
+		bcopy = strdup(b);
+		baux = strtok(bcopy, " \t\n");
+		if ((strcmp(b, "exit\n") == 0) || (strcmp(baux, "exit") == 0))
 			break;
 		pid = fork();
 		if (pid == -1)
@@ -49,6 +49,6 @@ int main(int ac, char **av, char **env)
 			wait(&status);
 		massive_free(2, p1, b);
 	} while (isat == 1);
-	massive_free(2, p1, b);
+	/*massive_free(2, p1, b);*/
 	return (0);
 }
