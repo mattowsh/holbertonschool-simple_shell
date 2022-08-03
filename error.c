@@ -20,6 +20,7 @@ char *error(char *b)
 	if (!message)
 		return (NULL);
 
+	strtok(b, "\n");
 	strcat(message, prompt);
 	strcat(message, ": ");
 	strcat(message, b);

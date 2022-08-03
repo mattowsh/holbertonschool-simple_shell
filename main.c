@@ -41,7 +41,7 @@ int main(int ac, char **av, char **env)
 		else if (pid == 0)
 		{
 			if (interactive(b, p1) == -1)
-				/*perror(error(b));*/
+				perror(error(b));
 			massive_free(2, p1, b);
 			exit(errno);
 		}
