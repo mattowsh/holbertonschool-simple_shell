@@ -3,7 +3,7 @@ The **simple shell project** is the final project of the Foundations: first trim
 
 To create it we apply the knowledge learnt about *C programming language*. The objetive was **generate a simplify version of the original Unix system shell**.
 
-The authors are Mateo Gallo and Belén Matto.
+The authors are Mateo Gallo and Belén Matto.  
 Holberton School, 2022.  
 Montevideo, Uruguay.
 
