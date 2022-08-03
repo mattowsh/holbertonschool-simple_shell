@@ -23,7 +23,7 @@ int exists(char *filename)
  * Return: -1 if the execution failed
  */
 
-int non_interactive(char *p1, char **av)
+int non_interactive(char *p1, char **av, char **env)
 {
 	char *full_path, *temp;
 	char **argv;
@@ -58,7 +58,7 @@ int non_interactive(char *p1, char **av)
 			}
 			argv = set_strtok(temp);
 			free(temp);
-			execve(full_path, argv, NULL);
+			execve(full_path, argv, env);
 		}
 		p1 = strtok(NULL, ":");
 		free(full_path);
@@ -75,7 +75,7 @@ int non_interactive(char *p1, char **av)
  * Return: -1 if the execution failed
  */
 
-int interactive(char *b, char *p1)
+int interactive(char *b, char *p1, char **env)
 {
 	char *tokens, *full_path, **argv = NULL;
 
@@ -91,7 +91,7 @@ int interactive(char *b, char *p1)
 		argv = set_strtok(b);
 
 		if (exists(argv[0]) == 0) /*if b = absolut path*/
-			execve(argv[0], argv, NULL);
+			execve(argv[0], argv, env);
 
 		full_path[0] = 0;
 		strcat(full_path, tokens);
@@ -99,7 +99,7 @@ int interactive(char *b, char *p1)
 		strcat(full_path, argv[0]);
 		strcat(full_path, "\0");
 		if (exists(full_path) == 0)
-			execve(full_path, argv, NULL);
+			execve(full_path, argv, env);
 		tokens = strtok(NULL, ":");
 		free(full_path);
 	}
