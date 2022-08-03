@@ -5,7 +5,6 @@ To create it we apply the knowledge learnt about *C programming language*. The o
 
 The authors are Mateo Gallo and Belén Matto.  
 Holberton School, 2022.  
-Montevideo, Uruguay.
 
 ## The shell: what is?
 Shell is a programm that provides a interface to the Unix system, operating like a command interpetre.
@@ -56,7 +55,9 @@ Clone this repository and compile the files in the following way:
 >>>AÑADIR LUEGO<<
 ## Authors
 [Mateo Gallo](link de linkedin)  
-[Belén Matto](https://www.linkedin.com/in/mattobelen/)
+[Belén Matto](https://www.linkedin.com/in/mattobelen/) 
+
+Montevideo, Uruguay.  
 
 Flowdchart
 ==========
