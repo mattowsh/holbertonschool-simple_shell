@@ -3,9 +3,10 @@ Readme was created
 **PENDING**
 
 CODE
-- error message
-- error value in exit (errno)
+- error message: por que pone salto de linea el return??
 - check if every token, of path, has at final byte a "/"
+- checkeo cuando input es \n\t\nexit\t\n, estoy trabajando con una copia de b,
+no deberia generarnos problema...
 
 MEMORY LEAKS
 - all files
@@ -15,9 +16,6 @@ TXT
 - Man
 - Linkedin blog
 - Flowchart
-
-OTHER
-- **test directory**
 
 
 

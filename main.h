@@ -8,6 +8,7 @@
 #include <fcntl.h>
 #include <sys/wait.h>
 #include <stdarg.h>
+#include <errno.h> 
 
 /**
  * struct separators - Contains char separators to the separators function
@@ -27,6 +28,6 @@ int interactive(char *b, char *p1);
 int separators(char letter);
 char *_getenv(char **env);
 void massive_free(int n, ...);
-char *error(char **av, char *b);
+char *error(char *b);
 
 #endif
