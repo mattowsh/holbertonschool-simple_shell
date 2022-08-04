@@ -14,7 +14,7 @@ int main(int ac, char **av, char **env)
 {
 	size_t bufsize = 1024;
 	char *b = NULL, *p = NULL, **baux = NULL, *full_path = NULL;
-	int status, characters;
+	int status = 0, characters;
 	int isat = isatty(STDIN_FILENO);
 
 	(void) ac, (void) av;
