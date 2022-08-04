@@ -6,8 +6,6 @@ char *_which(char *p, char **baux)
 {
 	char *token = NULL, *p1 = NULL, *full_path = NULL;
 
-	if (exists(baux[0]) == 0)
-		return (baux[0]);
 	p1 = strdup(p);
 	token = strtok(p1, ":");
 	while(token)

@@ -26,13 +26,12 @@ int main(int ac, char **av, char **env)
 		if (!b)
 			return (-1);
 		characters = getline(&b, &bufsize, stdin);
-		b = strtok(b, "\n");	
 		if (characters == -1) /* EOF case */
 		{
 			massive_free(1, b);
 			exit(errno);
 		}
-
+		b = strtok(b, "\n");
 		baux = set_strtok(b);
 		free(b);
 		if (!baux || !baux[0])
