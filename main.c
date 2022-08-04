@@ -39,7 +39,7 @@ int main(int ac, char **av, char **env)
 				continue;
 			break;
 		}*/
-		b = strtok(b, "\n");	
+		b = strtok(b, "\n");
 		if (characters == -1) /* EOF case */
 		{
 			massive_free(1, b);
@@ -50,7 +50,6 @@ int main(int ac, char **av, char **env)
 		if (!baux[0])
 		{
 			free_grid(baux);
-			free(b);
 			return (0);
 		}
 		if ((strcmp(baux[0], "exit") == 0))
@@ -58,7 +57,7 @@ int main(int ac, char **av, char **env)
 			if (baux[1])
 				x = atoi(baux[1]);
 			free_grid(baux);
-			free(b);
+			massive_free(1, b);
 			exit(x);
 		}
 		pid = fork();
@@ -70,10 +69,15 @@ int main(int ac, char **av, char **env)
 		else if (pid == 0)
 		{	
 			p = _getenv(env);
+			if (!p)
+			{
+				massive_free(1, p);
+				exit(errno);
+			}
 			p1 = strdup(p);
 			if (interactive(b, p1, env) == -1)
 				perror(error(b));
-			massive_free(3, b, p, p1);
+			massive_free(3,b, p, p1);
 			exit(errno);
 		}
 		else

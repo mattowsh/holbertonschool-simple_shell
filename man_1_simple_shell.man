@@ -1,0 +1,19 @@
+.TH SIMPLE_SHELL "5 august 2022"
+.SH NAME
+.B
+Simple Shell
+- The simple shell project is the final project of the Foundations: first trimester, of the career Software Engineering at Holberton School.
+- To create it we apply the knowledge learnt about C programming language. The objetive was generate a simplify version of the original Unix system shell.
+.SH ABOUT SHELL
+- Shell is a programm that provides a interface to the Unix system, operating like a command interpetre.
+- Takes the user input entered through the keyboard (in form of standard input), and displays the output in the screen (like standard output or standard error, if is the case).
+.SH SIMPLE SHELL FUNCTIONALITIES
+.SH FUNCTIONS AND SYSTEM CALLS USED
+.SH FILES
+.SH USAGE EXAMPLE
+-d,
+///The argument received is convert to a signed decimal notation. The result is printed.///
+.SH AUTHORS
+Mateo Gallo & Belén Matto
+.sp 1
+Holberton School, 2022
