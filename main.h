@@ -24,12 +24,11 @@ typedef struct separators
 char **set_strtok(char *input);
 int exists(char *filename);
 int non_interactive(char *p1, char **av, char **env);
-char *interactive(char *b, char *p1);
+int interactive(char *b, char *p1, char **env);
 int separators(char letter);
 char *_getenv(char **env);
 void massive_free(int n, ...);
 char *error(char *b);
 void free_grid(char **grid);
-int mul_extecutions(char *b);
 
 #endif

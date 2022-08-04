@@ -19,10 +19,16 @@ char *_getenv(char **e)
 		p = strtok(p, "=");
 		if (strcmp(p, "PATH") == 0)
 			break;
-		free(p);
 	}
-	if (!env[i])
-		return (0);
 	p = strtok(NULL, "=");
 	return (p);
 }
+
+/*int main (int ac, char **env)
+{
+	char *res = _getenv(env);
+
+	(void) ac;
+	printf("%s\n", res);
+	return (0);
+}*/
