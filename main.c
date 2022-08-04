@@ -14,7 +14,7 @@ int main(int ac, char **av, char **env)
 {
 	size_t bufsize = 1024;
 	char *b = NULL, *p, *p1, **baux = NULL;
-	int status, pid, characters, i = 0, x = 0;
+	int status, pid, characters, x = 0;
 	int isat = isatty(STDIN_FILENO);
 
 	(void) ac, (void) av;
@@ -22,9 +22,9 @@ int main(int ac, char **av, char **env)
 		if (isat == 1)
 			printf("#cisfun$ ");
 
-		//b = malloc(bufsize);
-		//if (!b)
-		//	return (-1);
+		/*b = malloc(bufsize);
+		if (!b)
+			return (-1);*/
 		characters = getline(&b, &bufsize, stdin);
 		/*while (b[i] != '\n')
 		{
