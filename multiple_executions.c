@@ -12,6 +12,5 @@ int mul_extecutions(char *b)
 		if (b[i] == '\n')
 			counter++;
 	}
-	counter++;
-
+	return (counter);
 }
