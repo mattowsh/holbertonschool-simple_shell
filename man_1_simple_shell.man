@@ -1,19 +1,78 @@
 .TH SIMPLE_SHELL "5 august 2022"
+
 .SH NAME
 .B
-Simple Shell
-- The simple shell project is the final project of the Foundations: first trimester, of the career Software Engineering at Holberton School.
-- To create it we apply the knowledge learnt about C programming language. The objetive was generate a simplify version of the original Unix system shell.
-.SH ABOUT SHELL
+Simple shell (./hsh)
+- A simplify version of the original Unix system shell.
+
+.SH SYNOPSIS
+#include <stdlib.h> 
+.PP
+#include <stdio.h>
+.PP
+#include <string.h>
+.PP
+#include <unistd.h>
+.PP
+#include <sys/stat.h>
+.PP
+#include <fcntl.h>
+.PP
+#include <sys/wait.h> 
+.PP
+#include <stdarg.h> 
+.PP
+#include <errno.h>
+.PP
+.B
+int main(int 
+.I
+ac
+, char
+.I
+**av
+, char 
+.I
+**env)
+
+.SH DESCRIPTION
+- The simple shell project is the final project of the Foundations: first rimester, of the career Software Engineering at Holberton School. To create it we apply the knowledge learnt about C programming language.
+.PP
 - Shell is a programm that provides a interface to the Unix system, operating like a command interpetre.
+.PP
 - Takes the user input entered through the keyboard (in form of standard input), and displays the output in the screen (like standard output or standard error, if is the case).
-.SH SIMPLE SHELL FUNCTIONALITIES
-.SH FUNCTIONS AND SYSTEM CALLS USED
-.SH FILES
-.SH USAGE EXAMPLE
--d,
-///The argument received is convert to a signed decimal notation. The result is printed.///
+
+.SH USAGE
+Clone the repository:
+.PP
+.B
+	- git clone https://github.com/mattowsh/holbertonschool-simple_shell.git
+.PP
+Compile the files in the following way:
+.PP
+.B
+	- gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+
+.SH USAGE EXAMPLES
+To activate 
+.B
+interactive mode
+write "./hsh". The prompt will be displayed. There, you can write commands and will be executed by the simple shell. EXAMPLES: "/bin/ls" or "pwd"
+.PP
+To activate 
+.B
+non-interactive mode
+write "echo (
+.I
+command to be executed
+) | ./hsh". EXAMPLES: "echo "Hello!" | ./hsh" or "echo "ls -ltr | ./hsh"
+
+.SH SEE ALSO
+atoi (man 3 atoi), close (man 2 close), execve (man 2 execve), exit (man 3 exit), fork (man 2 fork), free (man 3 free), getline (man 3 getline), isatty (man 3 isatty), malloc (man 3 malloc), open (man 2 open), perror (man 3 perror), stat (__xstat) (man 2 stat), strcat (man 3 strcat), strcmp (man 3 strcmp), strdup (man 3 strdup), strtok (man 3 strtok), va_arg (man 2 va_arg), va_end (man 2 va_end), va_start (man 2 va_start), wait (man 2 wait)
+
 .SH AUTHORS
-Mateo Gallo & Belén Matto
+Belén Matto & Mateo Gallo
+.sp 1
+<mattobelen@gmail.com>	<mateogesede@gmail.com>
 .sp 1
 Holberton School, 2022
