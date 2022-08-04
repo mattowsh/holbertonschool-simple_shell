@@ -18,7 +18,8 @@ int main(int ac, char **av, char **env)
 	int isat = isatty(STDIN_FILENO);
 
 	(void) ac, (void) av;
-	do {
+	while(1)
+	{
 		if (isat == 1)
 			printf("#cisfun$ ");
 		b = malloc(bufsize);
@@ -74,7 +75,7 @@ int main(int ac, char **av, char **env)
 			free_grid(baux);
 		}
 		/*massive_free(3, b, p, p1);*/
-	} while (isat == 1);
+	}
 	/*massive_free(2, p1, b);*/
 	return (0);
 }
