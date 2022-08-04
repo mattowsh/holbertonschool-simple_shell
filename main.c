@@ -14,7 +14,7 @@ int main(int ac, char **av, char **env)
 {
 	size_t bufsize = 1024;
 	char *b = NULL, *p = NULL, **baux = NULL, *full_path = NULL;
-	int status, characters, x = 0;
+	int status, characters;
 	int isat = isatty(STDIN_FILENO);
 
 	(void) ac, (void) av;
@@ -29,7 +29,7 @@ int main(int ac, char **av, char **env)
 		if (characters == -1) /* EOF case */
 		{
 			massive_free(1, b);
-			exit(errno);
+			exit(WEXITSTATUS(status));
 		}
 		b = strtok(b, "\n");
 		baux = set_strtok(b);
@@ -41,10 +41,8 @@ int main(int ac, char **av, char **env)
 		}
 		if ((strcmp(baux[0], "exit") == 0))
 		{
-			if (baux[1])
-				x = atoi(baux[1]);
 			free_grid(baux);
-			exit(x);
+			exit(WEXITSTATUS(status));
 		}
 		if (exists(baux[0]) != 0)
 		{
@@ -65,8 +63,6 @@ int main(int ac, char **av, char **env)
 		{
 			if (execve(baux[0], baux, env) == -1)
 				perror("Error:");
-			free_grid(baux);
-			exit(WEXITSTATUS(status));
 		}
 		else
 		{
