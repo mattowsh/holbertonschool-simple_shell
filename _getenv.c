@@ -8,20 +8,31 @@
  * Return: the value of PATH in string format
  */
 
-char *_getenv(char **e)
+char *_getenv(char **env)
 {
-	char **env = e, *p;
+	char *p = NULL, *token = NULL, *token_aux = NULL;
 	int i;
+
+	if (!env)
+	{
+		return (0);
+	}
 
 	for (i = 0; env[i]; i++)
 	{
 		p = strdup(env[i]);
-		p = strtok(p, "=");
-		if (strcmp(p, "PATH") == 0)
-			break;
+		token = strtok(p, "=");
+		if (strcmp(token, "PATH") == 0)
+		{
+			token = strtok(NULL, "=");
+			token_aux = strdup(token);
+			free(p);
+			return (token_aux);
+		}
+		free(p);
 	}
-	p = strtok(NULL, "=");
-	return (p);
+
+	return (0);
 }
 
 /*int main (int ac, char **env)

@@ -78,7 +78,7 @@ int non_interactive(char *p1, char **av, char **env)
 
 int interactive(char *b, char *p1, char **env)
 {
-	char *tokens, *full_path, **argv = NULL;
+	char *tokens = NULL, *full_path = NULL, **argv = NULL;
 
 	tokens = strtok(p1, ":");
 	while (tokens != NULL)
@@ -87,8 +87,6 @@ int interactive(char *b, char *p1, char **env)
 		if (!full_path)
 			return (-1);
 
-		if (argv)
-			free_grid(argv);
 		argv = set_strtok(b);
 
 		if (exists(argv[0]) == 0) /*if b = absolut path*/

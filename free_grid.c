@@ -11,6 +11,8 @@ void free_grid(char **grid)
 {
 	int i = 0, j = 0;
 
+	if (!grid)
+		return;
 	while (grid[i])
 		i++;
 
