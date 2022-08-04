@@ -16,6 +16,7 @@ displays the output in the screen (like *standard output* or *standard error*, i
 >>>LUEGO CUANDO TENGAMOS CHECKER OK<<
 
 ## Functions and system calls used
+- `atoi` (man 3 atoi)  
 - `close` (man 2 close)  
 - `execve` (man 2 execve)  
 - `exit` (man 3 exit)  
@@ -27,7 +28,13 @@ displays the output in the screen (like *standard output* or *standard error*, i
 - `open` (man 2 open)  
 - `perror` (man 3 perror)  
 - `stat` (__xstat) (man 2 stat)  
+- `strcat` (man 3 strcat)  
+- `strcmp` (man 3 strcmp)  
+- `strdup` (man 3 strdup)  
 - `strtok` (man 3 strtok)  
+- `va_arg` (man 2 va_arg)  
+- `va_end` (man 2 va_end)  
+- `va_start` (man 2 va_start)
 - `wait` (man 2 wait)  
 
 ## Files
