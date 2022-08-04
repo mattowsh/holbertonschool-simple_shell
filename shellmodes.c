@@ -22,7 +22,7 @@ int exists(char *filename)
  *
  * Return: -1 if the execution failed
  */
-
+/*
 int non_interactive(char *p1, char **av, char **env)
 {
 	char *full_path, *temp;
@@ -66,7 +66,7 @@ int non_interactive(char *p1, char **av, char **env)
 	}
 	return (-1);
 }
-
+*/
 /**
  * interactive - Executes the interactive shell mode
  * from child process
@@ -75,27 +75,22 @@ int non_interactive(char *p1, char **av, char **env)
  *
  * Return: -1 if the execution failed
  */
-
-int interactive(char *b, char *p1, char **env)
+char *interactive(char *b, char *p1)
 {
 	char *tokens, *full_path, **argv = NULL;
 
 	if (!p1)
-		return (-1);
+		return (0);
 	tokens = strtok(p1, ":");
-
 	argv = set_strtok(b);
-	if (exists(argv[0]) == 0) /*if b = absolut path*/
-		if (!(execve(argv[0], argv, env)))
-				free(argv);
-
+	if (exists(argv[0]) == 0)
+		return (argv[0]);
 	while (tokens != NULL)
 	{
 		full_path = malloc(1024);
 		if (!full_path)
 		{
-			free(argv);
-			return (-1);
+			return (0);
 		}
 		full_path[0] = 0;
 		strcat(full_path, tokens);
@@ -103,16 +98,13 @@ int interactive(char *b, char *p1, char **env)
 		strcat(full_path, argv[0]);
 		if (exists(full_path) == 0)
 		{
-			if (!(execve(full_path, argv, env)))
-			{
-				free(argv);
-				free(full_path);
-				return (-1);
-			}
+			free_grid(argv);
+			return (full_path);
 		}
 		tokens = strtok(NULL, ":");
 		free(full_path);
 	}
-	free(argv);
-	return (-1);
+	free(tokens);
+	free_grid(argv);
+	return (0);
 }

@@ -24,7 +24,7 @@ typedef struct separators
 char **set_strtok(char *input);
 int exists(char *filename);
 int non_interactive(char *p1, char **av, char **env);
-int interactive(char *b, char *p1, char **env);
+char *interactive(char *b, char *p1);
 int separators(char letter);
 char *_getenv(char **env);
 void massive_free(int n, ...);

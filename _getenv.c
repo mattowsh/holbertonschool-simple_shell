@@ -21,6 +21,8 @@ char *_getenv(char **e)
 			break;
 		free(p);
 	}
+	if (!env[i])
+		return (0);
 	p = strtok(NULL, "=");
 	return (p);
 }

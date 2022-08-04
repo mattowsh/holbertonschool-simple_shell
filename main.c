@@ -13,7 +13,7 @@
 int main(int ac, char **av, char **env)
 {
 	size_t bufsize = 1024;
-	char *b, *p, *p1, **baux = NULL;
+	char *b, *p, *p1, **baux = NULL, *full_path;
 	int status, pid, characters, x = 0;
 	int isat = isatty(STDIN_FILENO);
 
@@ -39,13 +39,13 @@ int main(int ac, char **av, char **env)
 				continue;
 			break;
 		}*/
-		b = strtok(b, "\n");
 		if (characters == -1) /* EOF case */
 		{
 			massive_free(1, b);
 			exit(errno);
 		}
 
+		b = strtok(b, "\n");
 		baux = set_strtok(b);
 		if (!baux[0])
 		{
@@ -60,30 +60,40 @@ int main(int ac, char **av, char **env)
 			massive_free(1, b);
 			exit(x);
 		}
+
+		p = _getenv(env);
+		if (!p)
+		{
+			massive_free(1, p);
+			exit(errno);
+		}
+		p1 = strdup(p);
+		full_path = interactive(b, p1);
+		if (!full_path)
+		{
+			free_grid(baux);
+			massive_free(3, b, p, p1);
+			continue;
+		}
 		pid = fork();
 		if (pid == -1)
 		{
-			massive_free(1, b);
+			massive_free(4,full_path, b, p, p1);
 			exit(errno);
 		}
 		else if (pid == 0)
 		{	
-			p = _getenv(env);
-			if (!p)
-			{
-				massive_free(1, p);
-				exit(errno);
-			}
-			p1 = strdup(p);
-			if (interactive(b, p1, env) == -1)
+			execve(full_path, baux, env);
+			/*if (interactive(b, p1, env) == -1)
 				perror(error(b));
-			massive_free(3,b, p, p1);
+			*/massive_free(4,full_path, b, p1);
+			free_grid(baux);
 			exit(errno);
 		}
 		else
 		{
 			wait(&status);
-			free(b);
+			massive_free(3,full_path, b, p1);
 			free_grid(baux);
 		}
 		/*massive_free(3, b, p, p1);*/
