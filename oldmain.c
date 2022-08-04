@@ -9,7 +9,7 @@
  *
  * Return: 0 in success, -1 otherwise
  */
-
+/*
 int main(int ac, char **av, char **env)
 {
 	size_t bufsize = 1024;
@@ -39,7 +39,7 @@ int main(int ac, char **av, char **env)
 			break;
 		}
 			
-		if (characters == -1) /* EOF case */
+		if (characters == -1) 
 		{
 			massive_free(1, b);
 			exit(errno);
@@ -81,8 +81,8 @@ int main(int ac, char **av, char **env)
 			free_grid(baux);
 			free(b);
 		}
-		/*massive_free(3, b, p, p1);*/
+		massive_free(3, b, p, p1);
 	} while (isat == 1);
-	/*massive_free(2, p1, b);*/
+	massive_free(2, p1, b);
 	return (0);
-}
+}*/
