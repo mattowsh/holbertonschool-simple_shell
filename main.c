@@ -66,7 +66,7 @@ int main(int ac, char **av, char **env)
 			if (execve(baux[0], baux, env) == -1)
 				perror("Error:");
 			free_grid(baux);
-			exit(errno);
+			exit(WEXITSTATUS(status));
 		}
 		else
 		{
