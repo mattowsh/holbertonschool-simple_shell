@@ -19,6 +19,7 @@ char *_getenv(char **e)
 		p = strtok(p, "=");
 		if (strcmp(p, "PATH") == 0)
 			break;
+		free(p);
 	}
 	p = strtok(NULL, "=");
 	return (p);

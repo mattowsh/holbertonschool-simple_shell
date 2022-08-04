@@ -14,7 +14,6 @@ int separators(char letter)
 
 	separators_t data[] = {
 		{" "},
-		{"\n"},
 		{"\t"},
 		{NULL}
 	};

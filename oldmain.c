@@ -13,7 +13,7 @@
 int main(int ac, char **av, char **env)
 {
 	size_t bufsize = 1024;
-	char *b = NULL, *p, *p1, **baux = NULL;
+	char *b, *p, *p1, **baux = NULL;
 	int status, pid, characters, i = 0, x = 0;
 	int isat = isatty(STDIN_FILENO);
 
@@ -21,12 +21,11 @@ int main(int ac, char **av, char **env)
 	do {
 		if (isat == 1)
 			printf("#cisfun$ ");
-
-		//b = malloc(bufsize);
-		//if (!b)
-		//	return (-1);
+		b = malloc(bufsize);
+		if (!b)
+			return (-1);
 		characters = getline(&b, &bufsize, stdin);
-		/*while (b[i] != '\n')
+		while (b[i] != '\n')
 		{
 			if ((separators(b[i]) == 0))
 				break;
@@ -38,8 +37,8 @@ int main(int ac, char **av, char **env)
 			if (isat == 1)
 				continue;
 			break;
-		}*/
-		b = strtok(b, "\n");	
+		}
+			
 		if (characters == -1) /* EOF case */
 		{
 			massive_free(1, b);
@@ -80,6 +79,7 @@ int main(int ac, char **av, char **env)
 		{
 			wait(&status);
 			free_grid(baux);
+			free(b);
 		}
 		/*massive_free(3, b, p, p1);*/
 	} while (isat == 1);

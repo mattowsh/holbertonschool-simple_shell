@@ -81,28 +81,36 @@ int interactive(char *b, char *p1, char **env)
 	char *tokens, *full_path, **argv = NULL;
 
 	tokens = strtok(p1, ":");
+
+	argv = set_strtok(b);
+	if (exists(argv[0]) == 0) /*if b = absolut path*/
+		if (!(execve(argv[0], argv, env)))
+				free(argv);
+
 	while (tokens != NULL)
 	{
 		full_path = malloc(1024);
 		if (!full_path)
-			return (-1);
-
-		if (argv)
+		{
 			free(argv);
-		argv = set_strtok(b);
-
-		if (exists(argv[0]) == 0) /*if b = absolut path*/
-			execve(argv[0], argv, env);
-
+			return (-1);
+		}
 		full_path[0] = 0;
 		strcat(full_path, tokens);
 		strcat(full_path, "/");
 		strcat(full_path, argv[0]);
-		strcat(full_path, "\0");
 		if (exists(full_path) == 0)
-			execve(full_path, argv, env);
+		{
+			if (!(execve(full_path, argv, env)))
+			{
+				free(argv);
+				free(full_path);
+				return (-1);
+			}
+		}
 		tokens = strtok(NULL, ":");
 		free(full_path);
 	}
+	free(argv);
 	return (-1);
 }
