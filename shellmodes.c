@@ -80,6 +80,8 @@ int interactive(char *b, char *p1, char **env)
 {
 	char *tokens, *full_path, **argv = NULL;
 
+	if (!p1)
+		return (-1);
 	tokens = strtok(p1, ":");
 
 	argv = set_strtok(b);
