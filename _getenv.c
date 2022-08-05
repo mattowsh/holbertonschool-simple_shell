@@ -17,7 +17,6 @@ char *_getenv(char *env)
 	{
 		return (0);
 	}
-
 	for (i = 0; environ[i]; i++)
 	{
 		p = strdup(environ[i]);
@@ -25,9 +24,14 @@ char *_getenv(char *env)
 		if (strcmp(token, env) == 0)
 		{
 			token = strtok(NULL, "=");
-			token_aux = strdup(token);
+			if (token)
+			{
+				token_aux = strdup(token);
+				free(p);
+				return (token_aux);
+			}
 			free(p);
-			return (token_aux);
+			return (0);
 		}
 		free(p);
 	}

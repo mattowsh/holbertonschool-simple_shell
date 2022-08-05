@@ -8,7 +8,7 @@ char *_which(char *p, char **baux)
 
 	if (strchr(baux[0], '/') && !exists(baux[0]))
 		return (strdup(baux[0]));
-	if (!p)
+	if (!p || (strcmp(p, "") == 0))
 		return (0);
 	p1 = strdup(p);
 	token = strtok(p1, ":");
