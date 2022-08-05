@@ -14,7 +14,7 @@ int main(int ac, char **av, char **env)
 {
 	size_t bufsize = 1024;
 	char *b = NULL, *p = NULL, **baux = NULL, *full_path = NULL;
-	int status = 0, characters;
+	int status = 0, characters, i;
 	int isat = isatty(STDIN_FILENO);
 
 	(void) ac, (void) av;
@@ -39,10 +39,17 @@ int main(int ac, char **av, char **env)
 			free_grid(baux);
 			continue;
 		}
-		if ((strcmp(baux[0], "exit") == 0))
+		if (strcmp(baux[0], "exit") == 0)
 		{
 			free_grid(baux);
 			exit(WEXITSTATUS(status));
+		}
+		if (strcmp(baux[0], "env") == 0)
+		{
+			for (i = 0; env[i]; i++)
+				printf("%s\n", env[i]);
+			free_grid(baux);
+			continue;
 		}
 		if (exists(baux[0]) != 0)
 		{
