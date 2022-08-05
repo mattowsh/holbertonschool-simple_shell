@@ -31,4 +31,5 @@ void massive_free(int n, ...);
 char *error(char *b);
 void free_grid(char **grid);
 char *_which(char *p, char **baux);
+int main_aux_1(char **baux);
 #endif
