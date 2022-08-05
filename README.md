@@ -59,28 +59,10 @@ Clone this repository and compile the files in the following way:
 >>>ADD IMAGE<<
 
 ## Flowchart
->>>AÑADIR LUEGO<<
+![simpleshell_flowchart png](https://user-images.githubusercontent.com/103126719/182977603-bfe5d44b-bc9c-40d3-bde1-1ebb61358af3.png)
+
 ## Authors
 [Mateo Gallo](https://www.linkedin.com/in/mateo-gallo-b46a90241/)  
 [Belén Matto](https://www.linkedin.com/in/mattobelen/) 
 
-Montevideo, Uruguay.  
-
-Flowdchart
-==========
-
-```mermaid
-graph TD;
-  Start0(Shell starts)
-  Start0-->While0{Continue if it's interactive mode}
-  While0-->If0{Is it interactive<br>mode?}
-  While0-->Exit1(End non<br>interactive<br>mode)
-  If0-->Getline[Read input]
-  Getline-->Fork0[Create a<br>child process]
-  Fork0-->|Input is equal to exit|Exit0(Exit shell)
-  Fork0-->Fork1{Check if it's<br>parent or<br>child}
-  Fork1-->|Child|Execve[Execute<br>requested<br>command]
-  Fork1-->|Parent|Wait[Wait for<br>child to<br>finish]
-  Execve-->|Finish process|Wait
-  Wait-->While0
-  ```
+Montevideo, Uruguay.
