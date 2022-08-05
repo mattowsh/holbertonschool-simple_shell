@@ -61,7 +61,7 @@ Clone this repository and compile the files in the following way:
 ## Flowchart
 >>>AÑADIR LUEGO<<
 ## Authors
-[Mateo Gallo](link de linkedin)  
+[Mateo Gallo](https://www.linkedin.com/in/mateo-gallo-b46a90241/)  
 [Belén Matto](https://www.linkedin.com/in/mattobelen/) 
 
 Montevideo, Uruguay.  
