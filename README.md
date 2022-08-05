@@ -56,7 +56,7 @@ displays the output in the screen (like *standard output* or *standard error*, i
 - **`separators.c`** : Function that checks if a char is a separator like: space, newline, tab or NULL character at the end of the string  
 - **`set_strtok.c`** : Function that tokenizes a string based in separators (mentioned previously)  
 - **`shellmodes.c`** : File that contains the functions  
-    - *exitst* : Get the status of a file, checking if a filename exists or not
+    - *exist* : Get the status of a file, checking if a filename exists or not
 - **`_which.c`** : Checks if the input is a path. If not, tokenizes PATH variable and generate differentes paths
 
 

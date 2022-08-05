@@ -1,4 +1,4 @@
-.TH SIMPLE_SHELL "5 august 2022"
+.TH SIMPLE_SHELL (1) "5 august 2022"
 
 .SH NAME
 .B
@@ -42,6 +42,22 @@ ac
 .PP
 - Takes the user input entered through the keyboard (in form of standard input), and displays the output in the screen (like standard output or standard error, if is the case).
 
+.SH SIMPLE SHELL FUNCTIONALITIES
+-  Display a prompt and wait for the user to type a command. A command line always ends with a new line
+.sp 1
+-  The prompt is displayed again each time a command has been executed
+.sp 1
+-  If an executable cannot be found, print an error message and display the prompt again
+.sp 1
+-  Handle errors
+.sp 1
+-  Handle the “end of file” condition (Ctrl+D)
+.sp 1
+-  Handle command lines with arguments
+.sp 1
+-  Handle the PATH
+.sp 1
+-  Handle the exit and env built-in
 .SH USAGE
 Clone the repository:
 .PP

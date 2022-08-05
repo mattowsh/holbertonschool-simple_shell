@@ -23,7 +23,7 @@ int exists(char *filename)
  * Return: -1 if the execution failed
  */
 
-int non_interactive(char *p1, char **av, char **env)
+/*int non_interactive(char *p1, char **av, char **env)
 {
 	char *full_path, *temp;
 	char **argv;
@@ -65,7 +65,7 @@ int non_interactive(char *p1, char **av, char **env)
 		free(full_path);
 	}
 	return (-1);
-}
+}*/
 
 /**
  * interactive - Executes the interactive shell mode
@@ -75,7 +75,7 @@ int non_interactive(char *p1, char **av, char **env)
  *
  * Return: -1 if the execution failed
  */
-
+/*
 int interactive(char *b, char *p1, char **env)
 {
 	char *tokens = NULL, *full_path = NULL, **argv = NULL;
@@ -104,4 +104,4 @@ int interactive(char *b, char *p1, char **env)
 		free(full_path);
 	}
 	return (-1);
-}
+}*/
