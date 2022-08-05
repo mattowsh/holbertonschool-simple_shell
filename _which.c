@@ -6,6 +6,8 @@ char *_which(char *p, char **baux)
 {
 	char *token = NULL, *p1 = NULL, *full_path = NULL;
 
+	if (strchr(baux[0], '/') && exists(baux[0]))
+		return (baux[0]);
 	if (!p)
 		return (0);
 	p1 = strdup(p);
