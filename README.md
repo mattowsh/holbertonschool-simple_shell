@@ -49,6 +49,12 @@ displays the output in the screen (like *standard output* or *standard error*, i
 - **`AUTHORS`** : List of contributors  
 - **`man_1_simple_shell`** : Manual page of the simple shell  
 - **`main.c`** : Function that contains the main code; coordinates the execution of programs and alternate between interactive and non-interactive shell modes  
+- **`main_aux.c`** : File that supports the main execution. Contains the functions:
+	- *main_aux_1* :
+	- *main_aux0* :
+	- *main_aux_exit* :
+	- *main_aux_env* :
+	- *main_aux_fork* :
 - **`main.h`** : Header File  
 - **`error.c`** : Function that creates the message error to be printed when interactive shell mode will fail  
 - **`free.c`** : Function that frees memory allocated  

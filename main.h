@@ -19,7 +19,7 @@ typedef struct separators
 {
 	char *sep;
 } separators_t;
-extern char **environ;
+
 /* functions */
 char **set_strtok(char *input);
 int exists(char *filename);
@@ -32,4 +32,10 @@ char *error(char *b);
 void free_grid(char **grid);
 char *_which(char *p, char **baux);
 int main_aux_1(char **baux);
+void main_aux0(int characters, char *b, int not_found, int status);
+int main_aux_exit(char **baux, int not_found, int status);
+int main_aux_env(char **baux);
+int main_aux_fork(char **baux, int status);
+extern char **environ;
+
 #endif
