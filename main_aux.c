@@ -18,11 +18,11 @@ int main_aux_1(char **baux)
 }
 
 /**
- * main_aux0 - main auxiliar
- * @characters: int
- * @b: string
- * @not_found: int
- * @status: int
+ * main_aux0 - Checks main getline return. Case: EOF input
+ * @characters : main getline return
+ * @b : input
+ * @not_found : error int
+ * @status: status variable, int
  */
 
 void main_aux0(int characters, char *b, int not_found, int status)
@@ -37,11 +37,12 @@ void main_aux0(int characters, char *b, int not_found, int status)
 }
 
 /**
- * main_aux_exit - handle exit command
- * @baux: pointer to strings
- * @not_found: edge cases
- * @status: int
- * Return: int
+ * main_aux_exit - Handles the "exit" built it
+ * @baux : list of arguements
+ * @not_found : error int
+ * @status: status variable, int
+ *
+ * Return: 0 if the argument is not "exit", != 0 otherwise
  */
 
 int main_aux_exit(char **baux, int not_found, int status)
@@ -57,9 +58,10 @@ int main_aux_exit(char **baux, int not_found, int status)
 }
 
 /**
- * main_aux_env - function for env case
- * @baux: pointer to strings
- * Return: int
+ * main_aux_env - Handles the "env" built it
+ * @baux : list of arguments
+ *
+ * Return: 1 if the argument is "env", 0 if is not
  */
 
 int main_aux_env(char **baux)
@@ -77,10 +79,11 @@ int main_aux_env(char **baux)
 }
 
 /**
- * main_aux_fork - forks the funciton
- * @baux: char pointer to strings
- * @status: int
- * Return: int
+ * main_aux_fork - Creates a child process
+ * @baux : list of arguments
+ * @status : status variable, int
+ *
+ * Return: child process status value
  */
 
 int main_aux_fork(char **baux, int status)
