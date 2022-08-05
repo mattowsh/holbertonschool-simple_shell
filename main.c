@@ -13,8 +13,8 @@
 int main(int ac, char **av, char **env)
 {
 	size_t bufsize = 1024;
-	char *b = NULL, *p = NULL, **baux = NULL, *full_path = NULL, not_found = 0;
-	int status = 0, characters, i;
+	char *b = NULL, *p = NULL, **baux = NULL, *full_path = NULL;
+	int status = 0, characters, i, not_found = 0;
 	int isat = isatty(STDIN_FILENO);
 
 	(void) ac, (void) av;
@@ -29,6 +29,8 @@ int main(int ac, char **av, char **env)
 		if (characters == -1) /* EOF case */
 		{
 			massive_free(1, b);
+			if (not_found != 0)
+				exit(not_found);
 			exit(WEXITSTATUS(status));
 		}
 		b = strtok(b, "\n");
@@ -42,8 +44,11 @@ int main(int ac, char **av, char **env)
 		if (strcmp(baux[0], "exit") == 0)
 		{
 			free_grid(baux);
+			if (not_found != 0)
+				exit(not_found);
 			exit(WEXITSTATUS(status));
 		}
+		not_found = 0;
 		if (strcmp(baux[0], "env") == 0)
 		{
 			for (i = 0; env[i]; i++)
@@ -82,5 +87,5 @@ int main(int ac, char **av, char **env)
 		/*massive_free(3, b, p, p1);*/
 	}
 	/*massive_free(2, p1, b);*/
-	return (not_found);
+	return (0);
 }
