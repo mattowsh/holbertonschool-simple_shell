@@ -16,7 +16,6 @@ displays the output in the screen (like *standard output* or *standard error*, i
 >>>LUEGO CUANDO TENGAMOS CHECKER OK<<
 
 ## Functions and system calls used
-- `atoi` (man 3 atoi)  
 - `close` (man 2 close)  
 - `execve` (man 2 execve)  
 - `exit` (man 3 exit)  
@@ -44,6 +43,7 @@ displays the output in the screen (like *standard output* or *standard error*, i
 - **`main.h`** : Header File  
 - **`error.c`** : Function that creates the message error to be printed when interactive shell mode will fail  
 - **`free.c`** : Function that frees memory allocated  
+- **free_grid.c** : 
 - **`separators.c`** : Function that checks if a char is a separator like: space, newline, tab or NULL character at the end of the string  
 - **`set_strtok.c`** : Function that tokenizes a string based in separators (mentioned previously)  
 - **`shellmodes.c`** : File that contains the functions  
