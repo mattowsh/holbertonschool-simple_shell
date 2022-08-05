@@ -10,7 +10,7 @@
  * Return: 0 in success, -1 otherwise
  */
 
-int main(int ac, char **av, char **env)
+int main(int ac, char **av)
 {
 	size_t bufsize = 1024;
 	char *b = NULL, *p = NULL, **baux = NULL, *full_path = NULL;
@@ -51,24 +51,21 @@ int main(int ac, char **av, char **env)
 		not_found = 0;
 		if (strcmp(baux[0], "env") == 0)
 		{
-			for (i = 0; env[i]; i++)
-				printf("%s\n", env[i]);
+			for (i = 0; environ[i]; i++)
+				printf("%s\n", environ[i]);
 			free_grid(baux);
 			continue;
 		}
-		if (exists(baux[0]) != 0)
+		p = _getenv("PATH");
+		full_path = _which(p, baux);
+		if (full_path == 0)
 		{
-			p = _getenv(env);
-			full_path = _which(p, baux);
-			if (full_path == 0)
-			{
-				not_found = 127;
-				dprintf(STDERR_FILENO, "./hsh: 1: %s: not found\n", baux[0]);
-			}
-			free(p);
-			free(baux[0]);
-			baux[0] = full_path;
+			not_found = 127;
+			dprintf(STDERR_FILENO, "./hsh: 1: %s: not found\n", baux[0]);
 		}
+		free(p);
+		free(baux[0]);
+		baux[0] = full_path;
 		if (!baux[0])
 		{
 			free_grid(baux);
@@ -76,7 +73,7 @@ int main(int ac, char **av, char **env)
 		}
 		if (fork() == 0)
 		{
-			if (execve(baux[0], baux, env) == -1)
+			if (execve(baux[0], baux, environ) == -1)
 				perror("Error:");
 		}
 		else
