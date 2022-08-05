@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * set_strtok - Tokenize a string based in separators:
+ * set_strtok - Tokenizes a string based in separators:
  * space, newline, tab or NULL character at the end of the string
  * @input: string to be tokenized
  *
@@ -47,15 +47,3 @@ char **set_strtok(char *input)
 	result[counter] = NULL;
 	return (result);
 }
-/*
-int main(void)
-{
-	char *str = "holaaaaaaa a a a a a";
-	char **ar;
-
-	ar = set_strtok(str);
-	for (int i = 0; ar[i]; i++)
-		printf("%s\n", ar[i]);
-	free_grid(ar);
-	return (0);
-}*/

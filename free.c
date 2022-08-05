@@ -1,6 +1,10 @@
 #include "main.h"
 
-
+/**
+ * massive_free - A variadic function that frees multiple memory
+ * spaces allocated
+ * @n : quantity of frees
+ */
 
 void massive_free(int n, ...)
 {

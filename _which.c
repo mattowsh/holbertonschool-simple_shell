@@ -1,6 +1,13 @@
 #include "main.h"
 
-
+/**
+ * _which - Checks if the input is a path. If not, tokenizes PATH
+ * variable and generate differentes paths
+ * @p : PATH variable tokenized
+ * @baux : arguments in string format
+ *
+ * Return: tokenized paths contemplating the input
+ */
 
 char *_which(char *p, char **baux)
 {
@@ -12,13 +19,13 @@ char *_which(char *p, char **baux)
 		return (0);
 	p1 = strdup(p);
 	token = strtok(p1, ":");
-	while(token)
+	while (token)
 	{
 		full_path = malloc(1024);
 		strcpy(full_path, token);
 		strcat(full_path, "/");
 		strcat(full_path, baux[0]);
-		if(exists(full_path) == 0)
+		if (exists(full_path) == 0)
 		{
 			free(p1);
 			return (full_path);
