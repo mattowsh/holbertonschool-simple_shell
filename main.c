@@ -13,7 +13,7 @@
 int main(int ac, char **av)
 {
 	size_t bufsize = 1024;
-	char *b = NULL, *p = NULL, **baux = NULL, *full_path = NULL;
+	char *b = NULL, *b_tmp = NULL, *p = NULL, **baux = NULL, *full_path = NULL;
 	int status = 0, characters, i, not_found = 0;
 	int isat = isatty(STDIN_FILENO);
 
@@ -33,8 +33,11 @@ int main(int ac, char **av)
 				exit(not_found);
 			exit(WEXITSTATUS(status));
 		}
-		b = strtok(b, "\n");
-		baux = set_strtok(b);
+		b_tmp = strdup(b);
+		strtok(b_tmp, "\n");
+
+		baux = set_strtok(b_tmp);
+		free(b_tmp);
 		free(b);
 		if (!baux || !baux[0])
 		{
