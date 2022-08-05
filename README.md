@@ -59,7 +59,7 @@ Clone this repository and compile the files in the following way:
 <img width="416" alt="simpleshellexample" src="https://user-images.githubusercontent.com/103126719/182978245-0edcef34-05e9-4408-be94-01edff2c7270.png">
 
 ## Flowchart
-![simpleshellflowchart png](https://user-images.githubusercontent.com/103126719/182980037-7eda845f-2525-40d5-a87e-88b77071bb1d.png)
+![simpleshellflowchart png](https://user-images.githubusercontent.com/103126719/183076429-6621e718-a463-4df9-a146-70610e50bc6b.png)
 
 ## Authors
 [Mateo Gallo](https://www.linkedin.com/in/mateo-gallo-b46a90241/)  
