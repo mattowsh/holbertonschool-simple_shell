@@ -13,7 +13,7 @@
 int main(int ac, char **av, char **env)
 {
 	size_t bufsize = 1024;
-	char *b = NULL, *p = NULL, **baux = NULL, *full_path = NULL;
+	char *b = NULL, *p = NULL, **baux = NULL, *full_path = NULL, not_found = 0;
 	int status = 0, characters, i;
 	int isat = isatty(STDIN_FILENO);
 
@@ -56,7 +56,10 @@ int main(int ac, char **av, char **env)
 			p = _getenv(env);
 			full_path = _which(p, baux);
 			if (full_path == 0)
-				dprintf(STDERR_FILENO, "./hsh 1: %s: not found\n", baux[0]);
+			{
+				not_found = 127;
+				dprintf(STDERR_FILENO, "./hsh: 1: %s: not found\n", baux[0]);
+			}
 			free(p);
 			free(baux[0]);
 			baux[0] = full_path;
@@ -79,5 +82,5 @@ int main(int ac, char **av, char **env)
 		/*massive_free(3, b, p, p1);*/
 	}
 	/*massive_free(2, p1, b);*/
-	return (0);
+	return (not_found);
 }
