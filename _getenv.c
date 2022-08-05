@@ -12,7 +12,7 @@ char *_getenv(char *env)
 {
 	char *p = NULL, *token = NULL, *token_aux = NULL;
 	int i;
-	
+
 	if (!environ)
 	{
 		return (0);
@@ -38,12 +38,3 @@ char *_getenv(char *env)
 
 	return (0);
 }
-
-/*int main (int ac, char **env)
-{
-	char *res = _getenv(env);
-
-	(void) ac;
-	printf("%s\n", res);
-	return (0);
-}*/

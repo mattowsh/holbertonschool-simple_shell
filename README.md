@@ -13,7 +13,14 @@ Takes the user input entered through the keyboard (in form of *standard input*),
 displays the output in the screen (like *standard output* or *standard error*, if is the case).
 
 ## Simple shell functionalities
->>>LUEGO CUANDO TENGAMOS CHECKER OK<<
+- [x] Display a prompt and wait for the user to type a command. A command line always ends with a new line  
+- [x] The prompt is displayed again each time a command has been executed  
+- [x] If an executable cannot be found, print an error message and display the prompt again  
+- [x] Handle errors  
+- [x] Handle the “end of file” condition (Ctrl+D)  
+- [x] Handle command lines with arguments  
+- [x] Handle the PATH  
+- [x] Handle the exit and env built-in  
 
 ## Functions and system calls used
 - `close` (man 2 close)  
@@ -28,7 +35,9 @@ displays the output in the screen (like *standard output* or *standard error*, i
 - `perror` (man 3 perror)  
 - `stat` (__xstat) (man 2 stat)  
 - `strcat` (man 3 strcat)  
-- `strcmp` (man 3 strcmp)  
+- `strchr` (man 3 strchr) 
+- `strcmp` (man 3 strcmp)
+- `strcpy` (man 3 strcpy)  
 - `strdup` (man 3 strdup)  
 - `strtok` (man 3 strtok)  
 - `va_arg` (man 2 va_arg)  
@@ -47,9 +56,9 @@ displays the output in the screen (like *standard output* or *standard error*, i
 - **`separators.c`** : Function that checks if a char is a separator like: space, newline, tab or NULL character at the end of the string  
 - **`set_strtok.c`** : Function that tokenizes a string based in separators (mentioned previously)  
 - **`shellmodes.c`** : File that contains the functions  
-    - *exit* : Get the status of a file, checking if a filename exists or not
-    - *non_interactive* : Executes the non-interactive shell mode from child process
-    - *interactive* : Executes the interactive shell mode from child process
+    - *exist* : Get the status of a file, checking if a filename exists or not
+- **`_which.c`** : Checks if the input is a path. If not, tokenizes PATH variable and generate differentes paths
+
 
 ## Usage example
 Clone this repository and compile the files in the following way:
@@ -59,7 +68,7 @@ Clone this repository and compile the files in the following way:
 <img width="416" alt="simpleshellexample" src="https://user-images.githubusercontent.com/103126719/182978245-0edcef34-05e9-4408-be94-01edff2c7270.png">
 
 ## Flowchart
-![simpleshellflowchart png](https://user-images.githubusercontent.com/103126719/182980037-7eda845f-2525-40d5-a87e-88b77071bb1d.png)
+![simpleshellflowchart png](https://user-images.githubusercontent.com/103126719/183076997-63175c7e-a122-4e98-bfc1-3ac16b5288e2.png)
 
 ## Authors
 [Mateo Gallo](https://www.linkedin.com/in/mateo-gallo-b46a90241/)  
