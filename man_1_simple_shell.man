@@ -22,8 +22,6 @@ Simple shell (./hsh)
 .PP
 #include <stdarg.h> 
 .PP
-#include <errno.h>
-.PP
 .B
 int main(int 
 .I

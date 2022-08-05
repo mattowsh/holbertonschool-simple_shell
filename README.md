@@ -51,10 +51,10 @@ displays the output in the screen (like *standard output* or *standard error*, i
 - **`main.c`** : Function that contains the main code; coordinates the execution of programs and alternate between interactive and non-interactive shell modes  
 - **`main_aux.c`** : File that supports the main execution. Contains the functions:
 	- *main_aux_1* : Checks if we receive or not arguments
-	- *main_aux0* : 
-	- *main_aux_exit* :
-	- *main_aux_env* :
-	- *main_aux_fork* :
+	- *main_aux0* : Checks main getline return. Case: EOF input
+	- *main_aux_exit* : Handles the "exit" built it
+	- *main_aux_env* : Handles the "env" built it
+	- *main_aux_fork* : Creates a child process
 - **`main.h`** : Header File  
 - **`error.c`** : Function that creates the message error to be printed when interactive shell mode will fail  
 - **`free.c`** : Function that frees memory allocated  
