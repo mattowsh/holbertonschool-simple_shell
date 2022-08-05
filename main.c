@@ -56,7 +56,7 @@ int main(int ac, char **av, char **env)
 			p = _getenv(env);
 			full_path = _which(p, baux);
 			if (full_path == 0)
-				dprintf(STDERR_FILENO, "./hsh: %s not found\n", baux[0]);
+				dprintf(STDERR_FILENO, "./hsh 1: %s: not found\n", baux[0]);
 			free(p);
 			free(baux[0]);
 			baux[0] = full_path;
