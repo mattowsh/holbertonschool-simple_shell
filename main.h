@@ -8,7 +8,6 @@
 #include <fcntl.h>
 #include <sys/wait.h>
 #include <stdarg.h>
-#include <errno.h> 
 
 /**
  * struct separators - Contains char separators to the separators function

@@ -3,7 +3,7 @@
 /**
  * _getenv - Searchs the PATH environment variable on
  * the environment
- * @e : the  environment list
+ * @env : the  environment list
  *
  * Return: the value of PATH in string format
  */
