@@ -1,4 +1,4 @@
-# <a> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/C_Programming_Language.svg/1200px-C_Programming_Language.svg.png" alt="Search algorithms" width=3% heigth=3% ></img></a> Simple Shell
+# <a> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/C_Programming_Language.svg/1200px-C_Programming_Language.svg.png" width=3% heigth=3% ></img></a> Simple Shell
 The **simple shell project** is the final project of the Foundations: first trimester, of the career Software Engineering at Holberton School.
 
 To create it we apply the knowledge learnt about *C programming language*. The objetive was **generate a simplify version of the original Unix system shell**.
